@@ -4,7 +4,7 @@ const Profile = ({ avatar, username, tag, location, stats }) => {
   return (
     <div className="profile">
       <div className="description">
-        <img src={avatar} alt={username} className="avatar" />
+        <img className="avatar" src={avatar} alt={username} width='100' />
         <p className="name">{username}</p>
         <p className="tag">{tag}</p>
         <p className="location">{location}</p>
@@ -28,8 +28,6 @@ const Profile = ({ avatar, username, tag, location, stats }) => {
   );
 };
 
-export default Profile;
-
 Profile.propTypes = {
   avatar: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
@@ -37,3 +35,5 @@ Profile.propTypes = {
   location: PropTypes.string.isRequired,
   stats: PropTypes.objectOf(PropTypes.number),
 };
+
+export default Profile;

@@ -1,35 +1,39 @@
 import PropTypes from 'prop-types';
 
-const Statistics = ({ title = "Upload stats", stats }) => {
+// function generateRandomColor() {
+//   let color = '#';
+//   for (let i = 0; i < 3; i++)
+//     color += (
+//       '0' + Math.floor((Math.random() * Math.pow(16, 2)) / 2).toString(16)
+//     ).slice(-2);
+//   return color;
+// }
+
+const Statistics = ({ title, stats }) => {
   return (
     <section className="statistics">
-      <h2 className="title">{title}</h2>
-
+      {title && <h2 className="title">{title}</h2>}
       <ul className="stat-list">
-        <li className="item">
-          <span className="label">{stats.label}</span>
-          <span className="percentage">{stats.percentage}</span>
-        </li>
-        <li className="item">
-          <span className="label">{stats.label}</span>
-          <span className="percentage">{stats.percentage}</span>
-        </li>
-        <li className="item">
-          <span className="label">{stats.label}</span>
-          <span className="percentage">{stats.percentage}</span>
-        </li>
-        <li className="item">
-          <span className="label">{stats.label}</span>
-          <span className="percentage">{stats.percentage}</span>
-        </li>
+        {stats.map(stat => (
+          <li key={stat.id} className="item">
+            <span className="label">{stat.label}</span>
+            <span className="percentage">{stat.percentage}%</span>
+          </li>
+        ))}
       </ul>
     </section>
   );
 };
 
-export default Statistics;
-
 Statistics.propTypes = {
   title: PropTypes.string,
-  stats: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
+
+export default Statistics;
