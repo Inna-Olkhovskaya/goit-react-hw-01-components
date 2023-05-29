@@ -178,5 +178,4 @@ currency - тип валюты
 
 Пример использования
 import transactions from 'path/to/transactions.json';
-
 <TransactionHistory items={transactions} />;
